@@ -199,7 +199,7 @@ WebSocketツールの[server_info](/resources/dev-tools/websocket-api-tool#serve
     - [並列ネットワーク](../../concepts/networks-and-servers/parallel-networks.md)
     - [コンセンサス](../../concepts/consensus-protocol/index.md)
 - **チュートリアル:**
-    - [バリデータとしてのrippledの実行](server-modes/run-rippled-as-a-validator.md)
+    - [バリデータとしてのrippledの実行](server-modes/validator.md)
     - [オフラインで`rippled`をスタンドアロンモードでテストする](../testing-and-auditing/index.md)
     - [`rippled`のトラブルシューティング](../troubleshooting/index.md)
 - **References:**

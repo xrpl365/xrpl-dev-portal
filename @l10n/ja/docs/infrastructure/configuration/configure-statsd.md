@@ -71,7 +71,7 @@ StatsDの各データの説明については、[`rippledmon`リポジトリ](ht
     - [`rippled`サーバ](../../concepts/networks-and-servers/index.md)
 - **チュートリアル:**
     - [`rippled`のインストール](../installation/index.md)
-    - [容量の計画](../installation/capacity-planning.md)
+    - [容量の計画](../prerequisites/capacity-planning.md)
 - **リアファレンス:**
     - [server_infoメソッド](../../references/http-websocket-apis/public-api-methods/server-info-methods/server_info.md)
     - [printメソッド](../../references/http-websocket-apis/admin-api-methods/status-and-debugging-methods/print.md)

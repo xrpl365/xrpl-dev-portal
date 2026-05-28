@@ -21,7 +21,7 @@ This tutorial assumes your server meets the following prerequisites:
 
     If you followed the installation instructions for a recommended platform, online deletion is enabled by default.
 
-- Your server has [enough disk space](../../installation/capacity-planning.md#disk-space) to store your chosen amount of history in its ledger store.
+- Your server has [enough disk space](../../prerequisites/capacity-planning.md#disk-space) to store your chosen amount of history in its ledger store.
 
 
 ## Configuration Steps
@@ -30,7 +30,7 @@ To change the amount of history your server stores, perform the following steps:
 
 1. Decide how many ledger versions' worth of history to store.
 
-    New ledger versions are usually validated 3 to 4 seconds apart, so the number of ledger versions corresponds roughly to the amount of time you want to store. See [Capacity Planning](../../installation/capacity-planning.md) for details of how much storage is required for different configurations.
+    New ledger versions are usually validated 3 to 4 seconds apart, so the number of ledger versions corresponds roughly to the amount of time you want to store. See [Capacity Planning](../../prerequisites/capacity-planning.md) for details of how much storage is required for different configurations.
 
     Online deletion is based on how many ledger versions to keep _after_ deleting history, so you should have enough disk space to store twice as many ledgers as you set it to keep.
 
@@ -67,10 +67,10 @@ To change the amount of history your server stores, perform the following steps:
 
     If this happens regularly, your server may not have sufficient specifications to keep up with the ledger while running online deletion. Check that other services on the same hardware (such as scheduled backups or security scans) aren't competing with the `rippled` server for resources. You may want to try any of the following:
 
-    - Increase your system specs. See [System Requirements](../../installation/system-requirements.md) for recommendations.
+    - Increase your system specs. See [System Requirements](../../prerequisites/system-requirements/index.md) for recommendations.
     - Change your configuration to store less history. (Step 2 of this tutorial)
-    - Change your server's [`node_size` parameter](../../installation/capacity-planning.md).
-    - Use [NuDB instead of RocksDB](../../installation/capacity-planning.md) for the ledger store.
+    - Change your server's [`node_size` parameter](../../prerequisites/capacity-planning.md).
+    - Use [NuDB instead of RocksDB](../../prerequisites/capacity-planning.md) for the ledger store.
     - [Schedule online deletion using Advisory Deletion](configure-advisory-deletion.md).
 
 
@@ -81,7 +81,7 @@ To change the amount of history your server stores, perform the following steps:
         - [Online Deletion](online-deletion.md)
 - **Tutorials:**
     - [Configure Advisory Deletion](configure-advisory-deletion.md)
-    - [Capacity Planning](../../installation/capacity-planning.md)
+    - [Capacity Planning](../../prerequisites/capacity-planning.md)
 - **References:**
     - [server_info method][]
     - [Ledger Data Formats](../../../references/protocol/ledger-data/index.md)

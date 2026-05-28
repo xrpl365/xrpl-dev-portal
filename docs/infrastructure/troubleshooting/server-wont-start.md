@@ -184,7 +184,7 @@ An error such as the following indicates that the `rippled.cfg` file has an impr
 Terminating thread rippled: main: unhandled N5beast14BadLexicalCastE 'std::bad_cast'
 ```
 
-Valid parameters for the `node_size` field are `tiny`, `small`, `medium`, `large`, or `huge`. For more information see [Node Size](../installation/capacity-planning.md#node-size).
+Valid parameters for the `node_size` field are `tiny`, `small`, `medium`, `large`, or `huge`. For more information see [Node Size](../prerequisites/capacity-planning.md#node-size).
 
 
 ## See Also
@@ -194,7 +194,7 @@ Valid parameters for the `node_size` field are `tiny`, `small`, `medium`, `large
     - [Technical FAQ](/about/faq.md)
 - **Tutorials:**
     - [Understanding Log Messages](understanding-log-messages.md)
-    - [Capacity Planning](../installation/capacity-planning.md)
+    - [Capacity Planning](../prerequisites/capacity-planning.md)
 - **References:**
     - [rippled API Reference](../../references/http-websocket-apis/index.md)
         - [`rippled` Commandline Usage](../commandline-usage.md)

@@ -175,7 +175,7 @@ As a server administrator, you can manage the reservations your server has for o
     - [Consensus](../../../concepts/consensus-protocol/index.md)
     - [Parallel Networks](../../../concepts/networks-and-servers/parallel-networks.md)
 - **Tutorials:**
-    - [Capacity Planning](../../installation/capacity-planning.md)
+    - [Capacity Planning](../../prerequisites/capacity-planning.md)
     - [Troubleshooting `rippled`](../../troubleshooting/index.md)
 - **References:**
     - [peers method][]

@@ -112,7 +112,7 @@ Each server in the XRP Ledger network performs all of the transaction processing
 
 ### Recommendation
 
-See [System Requirements](system-requirements.md) for a summary of the recommended hardware specs.
+See [System Requirements](system-requirements/index.md) for a summary of the recommended hardware specs.
 
 #### CPU Utilization and Virtualization
 <!-- STYLE_OVERRIDE: utilization -->
@@ -162,7 +162,7 @@ If your config file has a `[shard_db]` stanza, you can safely remove it. This se
 
 ##### Amazon Web Services
 
-Amazon Web Services (AWS) is a popular virtualized hosting environment. You can run `rippled` in AWS, but do not use Elastic Block Storage (EBS). See [System Requirements](system-requirements.md). <!-- SPELLING_IGNORE: ebs, aws -->
+Amazon Web Services (AWS) is a popular virtualized hosting environment. You can run `rippled` in AWS, but do not use Elastic Block Storage (EBS). See [System Requirements](system-requirements/index.md). <!-- SPELLING_IGNORE: ebs, aws -->
 
 AWS instance stores (`ephemeral` storage) provide suitable performance, but you may lose data in some circumstances, including when you start/stop an instance. This may be acceptable, since an individual XRP Ledger server can usually re-acquire lost ledger history from its peers. Configuration settings should be stored on more permanent storage.
 

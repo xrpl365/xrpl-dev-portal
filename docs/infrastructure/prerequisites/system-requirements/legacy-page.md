@@ -4,7 +4,7 @@ seo:
 labels:
   - Core Server
 ---
-# System Requirements
+# Legacy Page
 
 The following system requirements apply to both the core XRP Ledger server, `rippled`, and the Clio server for API access.
 

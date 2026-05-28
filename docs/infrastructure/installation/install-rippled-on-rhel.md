@@ -12,7 +12,7 @@ Currently, **Red Hat Enterprise Linux (RHEL) 9.6 is supported on x86_64 processo
 
 ## Prerequisites
 
-Before you install `rippled`, you must meet the [System Requirements](system-requirements.md).
+Before you install `rippled`, you must meet the [System Requirements](system-requirements/index.md).
 
 
 ## Installation Steps

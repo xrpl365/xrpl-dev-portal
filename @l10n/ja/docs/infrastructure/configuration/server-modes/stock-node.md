@@ -1,12 +1,12 @@
 ---
-html: run-rippled-as-a-stock-server.html
+html: stock-node.html
 parent: server-modes.html
 seo:
     description: XRPを統合する人のための汎用的な構成。
 labels:
   - コアサーバ
 ---
-# ウォレットサーバとしてのrippledの実行
+# ストックノード
 
 ストックサーバは`rippled`用の汎用的な設定です。ストックサーバを利用することで、XRP Ledgerにトランザクションを送信したり、レジャーの履歴にアクセスしたり、XRPやXRP Ledgerと統合するための最新の[ツール](../../../introduction/software-ecosystem.md)を利用したりすることができます。このサーバを使って、クライアントアプリケーションをXRP Ledgerに接続することができます。
 
@@ -20,7 +20,7 @@ labels:
 - 完全な共有グローバル[レジャー](../../../concepts/ledgers/index.md)のローカルコピーを維持
 
 
-バリデータとして[コンセンサスプロセス](../../../concepts/consensus-protocol/index.md)に参加するには、代わりに[バリデータとしてrippledを実行](run-rippled-as-a-validator.md)してください。
+バリデータとして[コンセンサスプロセス](../../../concepts/consensus-protocol/index.md)に参加するには、代わりに[バリデータとしてrippledを実行](validator.md)してください。
 
 
 ## `rippled`のインストールと実行
@@ -42,7 +42,7 @@ labels:
 - **チュートリアル:**
     - [rippledサーバのクラスター化](../peering/cluster-rippled-servers.md)
     - [`rippled`のインストール](../../installation/index.md)
-    - [容量の計画](../../installation/capacity-planning.md)
+    - [容量の計画](../../prerequisites/capacity-planning.md)
 - **リファレンス:**
     - [Validator Keysツールガイド](https://github.com/ripple/validator-keys-tool/blob/master/doc/validator-keys-tool-guide.md)
     - [consensus_infoメソッド][]

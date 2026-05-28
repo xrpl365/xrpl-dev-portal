@@ -37,7 +37,7 @@ If the problem persists, check the other possibilities listed on this page. If n
 
 ## Usual Causes of Syncing Issues
 
-The most common cause of syncing issues is not meeting the [system requirements](../installation/system-requirements.md). The three most common shortfalls are:
+The most common cause of syncing issues is not meeting the [system requirements](../prerequisites/system-requirements/index.md). The three most common shortfalls are:
 
 - **Slow disks.** You need a consistently fast solid state disk (SSD). Cloud providers like AWS usually don't guarantee disk performance, because it depends on hardware shared with other customers.
 - **Insufficient RAM.** The memory requirements vary depending on several factors including ones that are hard to predict like network load and how people use the XRP Ledger, so it's good to have more than the minimum system requirements.
@@ -115,7 +115,7 @@ As a test, you can temporarily change the paths to your server's databases as lo
     - [Technical FAQ](/about/faq.md)
 - **Tutorials:**
     - [Understanding Log Messages](understanding-log-messages.md)
-    - [Capacity Planning](../installation/capacity-planning.md)
+    - [Capacity Planning](../prerequisites/capacity-planning.md)
 - **References:**
     - [rippled API Reference](../../references/http-websocket-apis/index.md)
         - [peers method][]

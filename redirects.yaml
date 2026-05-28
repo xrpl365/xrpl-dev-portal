@@ -1,5 +1,13 @@
 # Docs redirects for moved pages -----------------------------------------------
 # (not associated with a major reorg)
+/docs/infrastructure/installation/system-requirements/:
+    to: /docs/infrastructure/prerequisites/system-requirements/
+/docs/infrastructure/installation/capacity-planning/:
+    to: /docs/infrastructure/prerequisites/capacity-planning/
+/docs/infrastructure/configuration/server-modes/run-rippled-as-a-stock-server/:
+    to: /docs/infrastructure/configuration/server-modes/stock-node/
+/docs/infrastructure/configuration/server-modes/run-rippled-as-a-validator/:
+    to: /docs/infrastructure/configuration/server-modes/validator/
 /docs/tutorials/defi/dex/trade-with-auction-slot-in-javascript/:
     to: /docs/tutorials/defi/dex/use-amm-auction-slot-for-lower-fees/
 /resources/contribute-documentation/tutorial-structure/:
@@ -344,7 +352,7 @@ production-readiness.html:
 get-started.html:
     to: /docs/tutorials
 run-rippled-as-a-wallet-server.html:
-    to: /docs/infrastructure/configuration/server-modes/run-rippled-as-a-stock-server
+    to: /docs/infrastructure/configuration/server-modes/stock-node
 faq:
     to: /about/faq
 faq.html:
@@ -1212,7 +1220,7 @@ commandline-usage.html:
 install-rippled.html:
     to: /docs/infrastructure/installation/
 system-requirements.html:
-    to: /docs/infrastructure/installation/system-requirements
+    to: /docs/infrastructure/prerequisites/system-requirements
 install-rippled-on-centos-rhel-with-yum.html:
     to: /docs/infrastructure/installation/install-rippled-on-rhel
 install-rippled-on-ubuntu.html:
@@ -1230,7 +1238,7 @@ build-on-linux-mac-windows.html:
 build-run-rippled-in-reporting-mode.html:
     to: /docs/infrastructure/installation/build-run-rippled-in-reporting-mode
 capacity-planning.html:
-    to: /docs/infrastructure/installation/capacity-planning
+    to: /docs/infrastructure/prerequisites/capacity-planning
 rippled-1-3-migration-instructions.html:
     to: /docs/infrastructure/installation/rippled-1-3-migration-instructions
 configure-rippled.html:
@@ -1238,9 +1246,9 @@ configure-rippled.html:
 server-modes.html:
     to: /docs/infrastructure/configuration/server-modes/
 run-rippled-as-a-validator.html:
-    to: /docs/infrastructure/configuration/server-modes/run-rippled-as-a-validator
+    to: /docs/infrastructure/configuration/server-modes/validator
 run-rippled-as-a-stock-server.html:
-    to: /docs/infrastructure/configuration/server-modes/run-rippled-as-a-stock-server
+    to: /docs/infrastructure/configuration/server-modes/stock-node
 data-retention.html:
     to: /docs/infrastructure/configuration/data-retention/
 configure-full-history.html:
@@ -1322,7 +1330,7 @@ update-rippled-automatically-on-centos-rhel.html:
 install-rippled-on-ubuntu-with-alien.html:
     to: /docs/infrastructure/installation/install-rippled-on-ubuntu
 run-a-rippled-validator.html:
-    to: /docs/infrastructure/configuration/server-modes/run-rippled-as-a-validator
+    to: /docs/infrastructure/configuration/server-modes/validator
 list-xrp-in-your-exchange.html:
     to: /docs/use-cases/defi/list-xrp-as-an-exchange
 contribute-code-to-rippled.html:

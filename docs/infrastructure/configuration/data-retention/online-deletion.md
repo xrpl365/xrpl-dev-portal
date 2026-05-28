@@ -16,7 +16,7 @@ The server always keeps the complete _current_ state of the ledger, with all the
 
 The default config file sets the `rippled` server to keep the most recent 2000 ledger versions and automatically delete older data.
 
-{% admonition type="success" name="Tip" %}Even with online deletion, the amount of disk space required to store the same time span's worth of ledger data increases over time, because the size of individual ledger versions tends to grow over time. This growth is very slow in comparison to the accumulation of data that occurs without deleting old ledgers. For more information on disk space needs, see [Capacity Planning](../../installation/capacity-planning.md).{% /admonition %}
+{% admonition type="success" name="Tip" %}Even with online deletion, the amount of disk space required to store the same time span's worth of ledger data increases over time, because the size of individual ledger versions tends to grow over time. This growth is very slow in comparison to the accumulation of data that occurs without deleting old ledgers. For more information on disk space needs, see [Capacity Planning](../../prerequisites/capacity-planning.md).{% /admonition %}
 
 
 ## Background
@@ -95,7 +95,7 @@ The following settings relate to online deletion:
 
     [{% inline-svg file="/docs/img/fetch_depth.svg" /%}](/docs/img/fetch_depth.svg "Ledger versions older than fetch_depth are not served to peers")
 
-For estimates of how much disk space is required to store different amounts of history, see [Capacity Planning](../../installation/capacity-planning.md#disk-space).
+For estimates of how much disk space is required to store different amounts of history, see [Capacity Planning](../../prerequisites/capacity-planning.md#disk-space).
 
 ### Advisory Deletion
 
@@ -122,7 +122,7 @@ When it comes time for online deletion, the server first walks through the oldes
     - [Ledgers](../../../concepts/ledgers/index.md)
     - [Consensus](../../../concepts/consensus-protocol/index.md)
 - **Tutorials:**
-    - [Capacity Planning](../../installation/capacity-planning.md)
+    - [Capacity Planning](../../prerequisites/capacity-planning.md)
     - [Configure `rippled`](../index.md)
         - [Configure Online Deletion](configure-online-deletion.md)
         - [Configure Advisory Deletion](configure-advisory-deletion.md)

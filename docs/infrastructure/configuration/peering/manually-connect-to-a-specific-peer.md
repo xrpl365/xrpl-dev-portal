@@ -65,7 +65,7 @@ rippled connect 169.54.2.151 51235
     - [Peer Protocol](../../../concepts/networks-and-servers/peer-protocol.md)
     - [The `rippled` Server](../../../concepts/networks-and-servers/index.md)
 - **Tutorials:**
-    - [Capacity Planning](../../installation/capacity-planning.md)
+    - [Capacity Planning](../../prerequisites/capacity-planning.md)
     - [Troubleshoot the `rippled` Server](../../troubleshooting/index.md)
 - **References:**
     - [connect method][]

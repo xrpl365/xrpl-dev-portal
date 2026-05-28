@@ -21,7 +21,7 @@ These instructions install an Ubuntu package that has been compiled and publishe
 
 Before you install Clio, you must meet the following requirements.
 
-- Ensure that your system meets the [system requirements](system-requirements.md).
+- Ensure that your system meets the [system requirements](system-requirements/index.md).
 
     {% admonition type="info" name="Note" %}
     Clio has the same system requirements as the `rippled` server, except Clio needs less disk space to store the same amount of ledger history.

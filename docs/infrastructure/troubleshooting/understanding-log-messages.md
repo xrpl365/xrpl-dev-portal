@@ -50,7 +50,7 @@ If your server crashes randomly during operation or as a result of particular co
 
 - Is your server running out of memory? On some systems, `rippled` may be terminated by the Out Of Memory (OOM) Killer or another monitor process.
 - If your server is running in a shared environment, are other users or administrators causing the machine or service to be restarted? For example, some hosted providers automatically kill any service that uses a large amount of a shared machine's resources for an extended period of time.
-- Does your server meet the [minimum requirements](../installation/system-requirements.md) to run `rippled`? What about the [recommendations for production servers](../installation/system-requirements.md#recommended-specifications)?
+- Does your server meet the [minimum requirements](../prerequisites/system-requirements/index.md) to run `rippled`? What about the [recommendations for production servers](../prerequisites/system-requirements/index.md#recommended-specifications)?
 
 If none of the above apply, please report the issue to Ripple as a security-sensitive bug. If Ripple can reproduce the crash, you may be eligible for a bounty. See <https://ripple.com/bug-bounty/> for details.
 
@@ -197,7 +197,7 @@ SHAMapStore:WRN Not deleting. state: syncing. age 25s
 
 The `state` indicates the [server state](../../references/http-websocket-apis/api-conventions/rippled-server-states.md). The `age` indicates how many seconds since the last validated ledger was closed. (A healthy age for the last validated ledger is 7 seconds or less.)
 
-During startup, these messages are normal and can be safely ignored. At other times, messages like this usually indicate that the server does not meet the [system requirements](../installation/system-requirements.md), especially disk I/O, to run online deletion at the same time as everything else the server is doing.
+During startup, these messages are normal and can be safely ignored. At other times, messages like this usually indicate that the server does not meet the [system requirements](../prerequisites/system-requirements/index.md), especially disk I/O, to run online deletion at the same time as everything else the server is doing.
 
 
 ## Potential Censorship
@@ -302,7 +302,7 @@ NetworkOPs:WRN We are not running on the consensus ledger
     - [Technical FAQ](/about/faq.md)
 - **Tutorials:**
     - [Diagnosing Problems](diagnosing-problems.md)
-    - [Capacity Planning](../installation/capacity-planning.md)
+    - [Capacity Planning](../prerequisites/capacity-planning.md)
 - **References:**
     - [rippled API Reference](../../references/http-websocket-apis/index.md)
         - [`rippled` Commandline Usage](../commandline-usage.md)

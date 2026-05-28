@@ -679,10 +679,27 @@
       expanded: false
       items:
         - page: docs/infrastructure/commandline-usage.md
+        - page: docs/infrastructure/prerequisites/index.md
+          expanded: false
+          items:
+            - page: docs/infrastructure/prerequisites/node-types.md
+            - page: docs/infrastructure/prerequisites/system-requirements/index.md
+              expanded: false
+              items:
+                - page: docs/infrastructure/prerequisites/system-requirements/development-and-testing.md
+                - page: docs/infrastructure/prerequisites/system-requirements/stock-node.md
+                - page: docs/infrastructure/prerequisites/system-requirements/validator.md
+                - page: docs/infrastructure/prerequisites/system-requirements/full-history.md
+                - page: docs/infrastructure/prerequisites/system-requirements/hub.md
+                - page: docs/infrastructure/prerequisites/system-requirements/pathing.md
+                - page: docs/infrastructure/prerequisites/system-requirements/clio.md
+                - page: docs/infrastructure/prerequisites/system-requirements/legacy-page.md
+            - page: docs/infrastructure/prerequisites/capacity-planning.md
+            - page: docs/infrastructure/prerequisites/monitoring.md
+            - page: docs/infrastructure/prerequisites/backup-and-recovery.md
         - page: docs/infrastructure/installation/index.md
           expanded: false
           items:
-            - page: docs/infrastructure/installation/system-requirements.md
             - page: docs/infrastructure/installation/install-rippled-on-rhel.md
             - page: docs/infrastructure/installation/install-rippled-on-ubuntu.md
             - page: docs/infrastructure/installation/install-clio-on-ubuntu.md
@@ -690,15 +707,18 @@
             - page: docs/infrastructure/installation/update-rippled-manually-on-rhel.md
             - page: docs/infrastructure/installation/update-rippled-manually-on-ubuntu.md
             - page: docs/infrastructure/installation/build-on-linux-mac-windows.md
-            - page: docs/infrastructure/installation/capacity-planning.md
         - page: docs/infrastructure/configuration/index.md
           expanded: false
           items:
             - page: docs/infrastructure/configuration/server-modes/index.md
               expanded: false
               items:
-                - page: docs/infrastructure/configuration/server-modes/run-rippled-as-a-validator.md
-                - page: docs/infrastructure/configuration/server-modes/run-rippled-as-a-stock-server.md
+                - page: docs/infrastructure/configuration/server-modes/stock-node.md
+                - page: docs/infrastructure/configuration/server-modes/validator.md
+                - page: docs/infrastructure/configuration/server-modes/full-history.md
+                - page: docs/infrastructure/configuration/server-modes/hub.md
+                - page: docs/infrastructure/configuration/server-modes/pathing.md
+                - page: docs/infrastructure/configuration/server-modes/clio.md
             - page: docs/infrastructure/configuration/data-retention/index.md
               expanded: false
               items:
@@ -717,6 +737,24 @@
                 - page: docs/infrastructure/configuration/peering/manually-connect-to-a-specific-peer.md
                 - page: docs/infrastructure/configuration/peering/set-max-number-of-peers.md
                 - page: docs/infrastructure/configuration/peering/use-a-peer-reservation.md
+            - page: docs/infrastructure/configuration/best-practices/index.md
+              expanded: false
+              items:
+                - page: docs/infrastructure/configuration/best-practices/stock-node.md
+                - page: docs/infrastructure/configuration/best-practices/validator.md
+                - page: docs/infrastructure/configuration/best-practices/full-history.md
+                - page: docs/infrastructure/configuration/best-practices/hub.md
+                - page: docs/infrastructure/configuration/best-practices/pathing.md
+                - page: docs/infrastructure/configuration/best-practices/clio.md
+            - page: docs/infrastructure/configuration/security/index.md
+              expanded: false
+              items:
+                - page: docs/infrastructure/configuration/security/stock-node.md
+                - page: docs/infrastructure/configuration/security/validator.md
+                - page: docs/infrastructure/configuration/security/full-history.md
+                - page: docs/infrastructure/configuration/security/hub.md
+                - page: docs/infrastructure/configuration/security/pathing.md
+                - page: docs/infrastructure/configuration/security/clio.md
             - page: docs/infrastructure/configuration/configure-amendment-voting.md
             - page: docs/infrastructure/configuration/configure-statsd.md
             - page: docs/infrastructure/configuration/configure-validator-list-threshold.md

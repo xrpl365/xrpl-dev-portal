@@ -9,7 +9,7 @@ labels:
 ---
 # Configure Advisory Deletion
 
-The default config file sets [`rippled`](../../../concepts/networks-and-servers/index.md) to automatically delete outdated [history](../../../concepts/networks-and-servers/ledger-history.md) of XRP Ledger state and transactions as new ledger versions become available. If your server uses most of its hardware resources during peak hours, you can configure the server to delete ledgers only when prompted by a command scheduled to run during off-peak hours, so that online deletion is less likely to impact [server performance](../../installation/capacity-planning.md).
+The default config file sets [`rippled`](../../../concepts/networks-and-servers/index.md) to automatically delete outdated [history](../../../concepts/networks-and-servers/ledger-history.md) of XRP Ledger state and transactions as new ledger versions become available. If your server uses most of its hardware resources during peak hours, you can configure the server to delete ledgers only when prompted by a command scheduled to run during off-peak hours, so that online deletion is less likely to impact [server performance](../../prerequisites/capacity-planning.md).
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ This tutorial assumes your server meets the following prerequisites:
 
 - Your server has enough disk space to store your chosen amount of history in its ledger store.
 
-    See [Capacity Planning](../../installation/capacity-planning.md) for details of how much storage is required for different configurations. With advisory deletion enabled, the maximum history a server may accumulate before deletion is equal to the number of ledger versions configured in the `online_delete` setting **plus** the amount of time between online deletion prompts.
+    See [Capacity Planning](../../prerequisites/capacity-planning.md) for details of how much storage is required for different configurations. With advisory deletion enabled, the maximum history a server may accumulate before deletion is equal to the number of ledger versions configured in the `online_delete` setting **plus** the amount of time between online deletion prompts.
 
 - You know which hours are least busy for your server.
 

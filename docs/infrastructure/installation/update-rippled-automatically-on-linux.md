@@ -38,7 +38,7 @@ To set up automatic updates, complete the following steps:
     - [The `rippled` Server](../../concepts/networks-and-servers/index.md)
     - [Consensus](../../concepts/consensus-protocol/index.md)
 - **Tutorials:**
-    - [Capacity Planning](capacity-planning.md)
+    - [Capacity Planning](../prerequisites/capacity-planning.md)
     - [Troubleshoot rippled](../troubleshooting/index.md)
 - **References:**
     - [rippled API Reference](../../references/http-websocket-apis/index.md)

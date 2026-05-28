@@ -15,7 +15,7 @@ labels:
 
 ## 前提条件
 
-`rippled`をインストールする前に、[システム要件](system-requirements.md)を満たす必要があります。
+`rippled`をインストールする前に、[システム要件](system-requirements/index.md)を満たす必要があります。
 
 
 ## インストール手順

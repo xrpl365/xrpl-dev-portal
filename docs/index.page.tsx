@@ -17,7 +17,7 @@ const recommendedPages = [
   },
   {
     description: 'Run a Validator',
-    link: '/docs/infrastructure/configuration/server-modes/run-rippled-as-a-validator/',
+    link: '/docs/infrastructure/configuration/server-modes/validator/',
   },
   {
     description: 'Reserves',

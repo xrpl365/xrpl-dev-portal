@@ -72,7 +72,7 @@ Terminating thread doJob: AcquisitionDone: unhandled
 
 ## Fix
 
-You can fix this issue using `rippled` on supported Linux systems according to the steps described in this document. In the case of a full-history server with system specs approximately matching the [recommended hardware configuration](../installation/capacity-planning.md#recommendation-1), the process may take more than two full days.
+You can fix this issue using `rippled` on supported Linux systems according to the steps described in this document. In the case of a full-history server with system specs approximately matching the [recommended hardware configuration](../prerequisites/capacity-planning.md#recommendation-1), the process may take more than two full days.
 
 ### Prerequisites
 

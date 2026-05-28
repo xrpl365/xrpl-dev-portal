@@ -71,7 +71,7 @@ If you are using a hosting service with a virtual firewall (for example, [AWS Se
     - [Peer Protocol](../../../concepts/networks-and-servers/peer-protocol.md)
     - [The `rippled` Server](../../../concepts/networks-and-servers/index.md)
 - **Tutorials:**
-    - [Capacity Planning](../../installation/capacity-planning.md)
+    - [Capacity Planning](../../prerequisites/capacity-planning.md)
     - [Troubleshoot the `rippled` Server](../../troubleshooting/index.md)
 - **References:**
     - [connect method][]

@@ -62,7 +62,7 @@ Validation uses only a small amount of computing resources, but there is not muc
 
 You can safely enable validation on a server that is also used for other purposes; this type of configuration is called an _all-purpose server_. Alternatively, you can run a _dedicated validator_ that does not perform other tasks, possibly in a [cluster](clustering.md) with other P2P Mode `rippled` servers.
 
-For more information about running a validator, see [Run `rippled` as a Validator](../../infrastructure/configuration/server-modes/run-rippled-as-a-validator.md).
+For more information about running a validator, see [Run `rippled` as a Validator](../../infrastructure/configuration/server-modes/validator.md).
 
 
 ## Stand-Alone Mode

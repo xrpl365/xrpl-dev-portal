@@ -42,7 +42,7 @@ To configure your server to acquire and store full history, complete the followi
       #advisory_delete=0
     ```
 
-    On a full-history server, you should use NuDB for the ledger store, because RocksDB requires too much RAM when the database is that large. For more information, see [Capacity Planning](../../installation/capacity-planning.md). You can remove the following performance-related configuration options from the default `[node_db]` stanza, because they only apply to RocksDB: `open_files`, `filter_bits`, `cache_mb`, `file_size_mb`, and `file_size_mult.`
+    On a full-history server, you should use NuDB for the ledger store, because RocksDB requires too much RAM when the database is that large. For more information, see [Capacity Planning](../../prerequisites/capacity-planning.md). You can remove the following performance-related configuration options from the default `[node_db]` stanza, because they only apply to RocksDB: `open_files`, `filter_bits`, `cache_mb`, `file_size_mb`, and `file_size_mult.`
 
     {% admonition type="warning" name="Caution" %}If you have any history already downloaded with RocksDB, you must either delete that data or change the paths to the databases in the config file when you switch to NuDB. You must change both the `path` field of the `[node_db]` stanza **and** the `[database_path]` (SQLite database) setting. Otherwise, the server may [fail to start](../../troubleshooting/server-wont-start.md#state-db-error).{% /admonition %}
 
@@ -117,7 +117,7 @@ To configure your server to acquire and store full history, complete the followi
     - [Ledger History](../../../concepts/networks-and-servers/ledger-history.md)
     - [rippled Server Modes](../../../concepts/networks-and-servers/rippled-server-modes.md)
 - **Tutorials:**
-    - [Capacity Planning](../../installation/capacity-planning.md), particularly [Disk Space](../../installation/capacity-planning.md#disk-space)
+    - [Capacity Planning](../../prerequisites/capacity-planning.md), particularly [Disk Space](../../prerequisites/capacity-planning.md#disk-space)
     - [Configure Online Deletion](configure-online-deletion.md)
     - [Diagnosing Problems with rippled](../../troubleshooting/diagnosing-problems.md)
     - [Understanding Log Messages](../../troubleshooting/understanding-log-messages.md)

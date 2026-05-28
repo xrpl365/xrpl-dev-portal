@@ -198,7 +198,7 @@ You can use [server_info in the WebSocket Tool](/resources/dev-tools/websocket-a
     - [Parallel Networks](../../concepts/networks-and-servers/parallel-networks.md)
     - [Consensus](../../concepts/consensus-protocol/index.md)
 - **Tutorials:**
-    - [Run rippled as a Validator](server-modes/run-rippled-as-a-validator.md)
+    - [Run rippled as a Validator](server-modes/validator.md)
     - [Test `rippled` Offline in Stand-Alone Mode](../testing-and-auditing/index.md)
     - [Troubleshooting `rippled`](../troubleshooting/index.md)
 - **References:**

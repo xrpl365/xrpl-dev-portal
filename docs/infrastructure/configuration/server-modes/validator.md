@@ -1,5 +1,5 @@
 ---
-html: run-rippled-as-a-validator.html
+html: validator.html
 parent: server-modes.html
 seo:
     description: Have your server vote on the consensus ledger.
@@ -9,7 +9,7 @@ labels:
 top_nav_grouping: Popular Pages
 top_nav_name: Join UNL
 ---
-# Run rippled as a Validator
+# Validator
 
 A [`rippled` server](../../../concepts/networks-and-servers/index.md) running in [validator mode](../../../concepts/networks-and-servers/rippled-server-modes.md) does everything a stock server does:
 
@@ -43,7 +43,7 @@ Strive to have your validator embody the following properties. Being a good vali
 
 - **Issuing prompt votes**
 
-    A good validator's votes arrive quickly and not after a consensus round has already finished. To keep your votes on time, make sure your validator meets the recommended [system requirements](../../installation/system-requirements.md), which include a fast internet connection.
+    A good validator's votes arrive quickly and not after a consensus round has already finished. To keep your votes on time, make sure your validator meets the recommended [system requirements](../../prerequisites/system-requirements/index.md), which include a fast internet connection.
 
     It is possible to submit new transactions and query data using a validator, but heavy loads of API queries may make the validator less reliable at keeping up with consensus. If your API needs are light enough, then you can use a server for both purposes. Ideally, a validator should be dedicated to participating in consensus.
 
@@ -303,7 +303,7 @@ For information about how to revoke a master key pair you generated for your val
 - **Tutorials:**
     - [Cluster rippled Servers](../peering/cluster-rippled-servers.md)
     - [Install `rippled`](../../installation/index.md)
-    - [Capacity Planning](../../installation/capacity-planning.md)
+    - [Capacity Planning](../../prerequisites/capacity-planning.md)
 - **References:**
     - [Validator Keys Tool Guide](https://github.com/ripple/validator-keys-tool/blob/master/doc/validator-keys-tool-guide.md)
     - [consensus_info method][]

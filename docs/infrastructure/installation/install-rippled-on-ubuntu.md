@@ -15,7 +15,7 @@ Currently, **Ubuntu 22.04 and Ubuntu 24.04 on x86_64 processors** have received 
 
 ## Prerequisites
 
-Before you install `rippled`, you must meet the [System Requirements](system-requirements.md).
+Before you install `rippled`, you must meet the [System Requirements](system-requirements/index.md).
 
 
 ## Installation Steps

@@ -18,7 +18,7 @@ If you are running a validator as a [private peer](peer-protocol.md#private-peer
 
 - **Tutorials:**
     - [Cluster `rippled` Servers](../../infrastructure/configuration/peering/cluster-rippled-servers.md)
-    - [Run rippled as a Validator](../../infrastructure/configuration/server-modes/run-rippled-as-a-validator.md)
+    - [Run rippled as a Validator](../../infrastructure/configuration/server-modes/validator.md)
 - **References:**
     - [peers method][]
     - [connect method][]

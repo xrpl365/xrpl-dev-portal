@@ -9,7 +9,7 @@ labels:
 ---
 # Configure a Private Server
 
-A [private server](../../../concepts/networks-and-servers/peer-protocol.md#private-peers) is a `rippled` server that connects to the network only through specific, trusted peers instead of connecting directly to discovered peers in the open peer-to-peer network. This kind of configuration is an optional precaution most commonly recommended for [validators](../server-modes/run-rippled-as-a-validator.md), but it can be useful for other specific purposes.
+A [private server](../../../concepts/networks-and-servers/peer-protocol.md#private-peers) is a `rippled` server that connects to the network only through specific, trusted peers instead of connecting directly to discovered peers in the open peer-to-peer network. This kind of configuration is an optional precaution most commonly recommended for [validators](../server-modes/validator.md), but it can be useful for other specific purposes.
 
 ## Prerequisites
 

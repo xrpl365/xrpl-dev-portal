@@ -98,7 +98,7 @@ In this case, the necessary interventions may involve changes to other systems, 
 
 If the outage is caused by a hardware failure or by higher load than the hardware is capable of handling, you may need to replace some components or even the entire server.
 
-The amount of load on a server in the XRP Ledger depends in part on transaction volume in the network, which varies organically. Load also depends on your usage pattern. See [Capacity Planning](../installation/capacity-planning.md) for how to plan the appropriate hardware and settings for your situation.
+The amount of load on a server in the XRP Ledger depends in part on transaction volume in the network, which varies organically. Load also depends on your usage pattern. See [Capacity Planning](../prerequisites/capacity-planning.md) for how to plan the appropriate hardware and settings for your situation.
 
 Warning or critical values for the following [metrics][] may indicate insufficient hardware:
 

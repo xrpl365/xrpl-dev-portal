@@ -10,13 +10,13 @@ If the `server_state` in the response is `full` or `proposing`, then your server
 
 After your server has synchronized with the rest of the network, you have a fully functional XRP Ledger peer-to-peer server that you can use to submit transactions or get API access to the XRP Ledger. See [Client Libraries](../references/client-libraries.md) or [HTTP / WebSocket APIs](../references/http-websocket-apis/index.md) for different ways to communicate with the server.
 
-If you use the XRP Ledger for your business or you want to contribute to the stability of the network, you should run one server as a validator. For information about validating servers and why you might want to run one, see [Run rippled as a Validator](../infrastructure/configuration/server-modes/run-rippled-as-a-validator.md).
+If you use the XRP Ledger for your business or you want to contribute to the stability of the network, you should run one server as a validator. For information about validating servers and why you might want to run one, see [Run rippled as a Validator](../infrastructure/configuration/server-modes/validator.md).
 
 Having trouble getting your server started? See [rippled Server Won't Start](../infrastructure/troubleshooting/server-wont-start.md).
 
 ### Additional Configuration
 
-`rippled` should connect to the XRP Ledger with the default configuration. However, you can change your settings by editing the `rippled.cfg` file. For recommendations about configuration settings, see [Capacity Planning](../infrastructure/installation/capacity-planning.md).
+`rippled` should connect to the XRP Ledger with the default configuration. However, you can change your settings by editing the `rippled.cfg` file. For recommendations about configuration settings, see [Capacity Planning](../infrastructure/prerequisites/capacity-planning.md).
 
 {% partial file="/docs/_snippets/conf-file-location.md" /%}
 
