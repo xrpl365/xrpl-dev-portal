@@ -5,8 +5,9 @@
 #   scripts/deploy-preview.sh
 #
 # A production `realm build` needs a Redocly plan token, so the snapshot is taken from a running
-# `realm develop`. If nothing is serving on $PORT, one is started from $SOURCE and stopped
-# afterwards. Uncommitted edits in $SOURCE are included: what you see locally is what reviewers get.
+# `realm develop` and turned into plain static pages (see preview/snapshot.mjs). If nothing is
+# serving on $PORT, one is started from $SOURCE and stopped afterwards. Uncommitted edits in
+# $SOURCE are included: what you see locally is what reviewers get.
 #
 # Same shape as the Permission Delegation deploy: upload to a staging dir on the OVH box (ssh
 # alias "ovh"), then sudo rsync into the krisapp-owned web root so it never serves a half copy.
@@ -51,7 +52,9 @@ for _ in $(seq 1 180); do
 done
 [ -n "$ready" ] || { echo "local preview on $LOCAL never served /docs/infrastructure" >&2; exit 1; }
 
-SNAPSHOT_LABEL="$label" node scripts/preview-snapshot.mjs "$LOCAL" "$OUT"
+# The snapshot tool drives a headless browser; its one dependency lives in preview/.
+[ -d preview/node_modules/playwright ] || npm ci --prefix preview --no-audit --no-fund
+SNAPSHOT_LABEL="$label" node preview/snapshot.mjs "$LOCAL" "$OUT"
 
 # Staging is kept between runs so unchanged, content-hashed assets are not re-uploaded.
 rsync -az --delete "$OUT/" "$REMOTE:$STAGING/"

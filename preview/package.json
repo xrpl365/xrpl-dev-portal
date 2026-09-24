@@ -1,0 +1,9 @@
+{
+  "name": "xrpl-org-preview-snapshot",
+  "private": true,
+  "description": "Static review snapshot of the Docs homepage and Infrastructure section for xrpl-org.xrpl365.com",
+  "type": "module",
+  "dependencies": {
+    "playwright": "1.62.1"
+  }
+}
