@@ -60,6 +60,8 @@ ssh "$REMOTE" "sudo rsync -a --delete $STAGING/ $DOCROOT/ && sudo chown -R krisa
 # Smoke: the root redirects to /docs, and a section page must carry this snapshot's banner.
 status=$(curl -sL -o /dev/null -w '%{http_code}' "$URL")
 [ "$status" = "200" ] || { echo "deploy smoke failed: HTTP $status from $URL" >&2; exit 1; }
-curl -s "${URL}docs/infrastructure" | grep -qF "$commit" \
+# Fetch first: `curl | grep -q` fails under pipefail when grep exits early and curl gets SIGPIPE.
+page=$(curl -s "${URL}docs/infrastructure")
+grep -qF "$commit" <<<"$page" \
   || { echo "deploy smoke failed: ${URL}docs/infrastructure does not show $commit" >&2; exit 1; }
 echo "deployed: $URL (HTTP $status) - $label"

@@ -193,4 +193,9 @@ await writeFile(path.join(outDir, 'robots.txt'), 'User-agent: *\nDisallow: /\n')
 const leftovers = [...pages.values()].map(review).filter((h) => /googletagmanager|osano/i.test(h)).length;
 console.log(`snapshot: ${pages.size} pages, ${files.size} files -> ${outDir}`);
 if (leftovers) console.log(`warning: ${leftovers} pages still mention googletagmanager/osano`);
-if (missing.length) console.log(`not fetched (${missing.length}):\n  ` + missing.slice(0, 40).join('\n  '));
+// A handful of misses is normal: path-like strings inside JS bundles, and images that only
+// other sections of the site use. VERBOSE=1 lists them.
+if (missing.length) {
+  console.log(`not fetched: ${missing.length} (usually harmless; VERBOSE=1 to list)`);
+  if (process.env.VERBOSE) console.log('  ' + missing.join('\n  '));
+}
