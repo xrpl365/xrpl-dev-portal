@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 # Snapshot the Docs homepage and the Infrastructure section from the local xrpl-dev-portal
-# checkout and publish it to https://xrpl-org.xrpl365.com/ for copy review.
+# checkout and publish it to https://xrpl365.com/nodedocs/ for copy review.
 #
 #   scripts/deploy-preview.sh
+#
+# Scope: this script owns /var/www/xrpl365-apps/nodedocs and nothing else. The main site
+# (repo xrpl365/xrpl365.com) owns /var/www/xrpl365 and deploys independently; both are served by
+# the one xrpl365 vhost, which gives this path its own `root`. The docroots are disjoint so the
+# --delete below cannot reach another site. Never widen DOCROOT to a parent.
+#
+# BASE in preview/snapshot.mjs must match the URL path and this DOCROOT's directory name: nginx
+# resolves the location by per-location `root`, not `alias`.
 #
 # A production `realm build` needs a Redocly plan token, so the snapshot is taken from a running
 # `realm develop` and turned into plain static pages (see preview/snapshot.mjs). If nothing is
@@ -17,10 +25,10 @@ cd "$(dirname "$0")/.."
 SOURCE=${SOURCE:-$HOME/Projects/xrpl-dev-portal}
 PORT=${PORT:-4050}
 REMOTE=ovh
-DOCROOT=/var/www/xrpl-org
-STAGING=/tmp/xrpl-org-deploy
-URL=https://xrpl-org.xrpl365.com/
-OUT=${TMPDIR:-/tmp}/xrpl-org-preview-dist
+DOCROOT=/var/www/xrpl365-apps/nodedocs
+STAGING=/tmp/nodedocs-deploy
+URL=https://xrpl365.com/nodedocs/
+OUT=${TMPDIR:-/tmp}/nodedocs-preview-dist
 LOCAL=http://127.0.0.1:$PORT
 
 # realm needs Node 22+.
@@ -39,7 +47,7 @@ label="$branch @ $commit$edits, $(date -u '+%Y-%m-%d %H:%M') UTC"
 started=""
 if ! curl -s -o /dev/null "$LOCAL/"; then
   echo "starting realm develop on port $PORT from $SOURCE"
-  (cd "$SOURCE" && exec ./node_modules/.bin/realm develop --port "$PORT") >"${TMPDIR:-/tmp}/xrpl-org-realm.log" 2>&1 &
+  (cd "$SOURCE" && exec ./node_modules/.bin/realm develop --port "$PORT") >"${TMPDIR:-/tmp}/nodedocs-realm.log" 2>&1 &
   started=$!
   trap 'kill "$started" 2>/dev/null || true' EXIT
 fi
@@ -60,9 +68,12 @@ SNAPSHOT_LABEL="$label" node preview/snapshot.mjs "$LOCAL" "$OUT"
 rsync -az --delete "$OUT/" "$REMOTE:$STAGING/"
 ssh "$REMOTE" "sudo rsync -a --delete $STAGING/ $DOCROOT/ && sudo chown -R krisapp:krisapp $DOCROOT"
 
-# Smoke: the root redirects to /docs, and a section page must carry this snapshot's banner.
+# Smoke: the entry path redirects to /docs, and a section page must carry this snapshot's banner.
 status=$(curl -sL -o /dev/null -w '%{http_code}' "$URL")
 [ "$status" = "200" ] || { echo "deploy smoke failed: HTTP $status from $URL" >&2; exit 1; }
+# The main site shares this vhost, so a bad nodedocs deploy would show up at the apex first.
+apex=$(curl -s -o /dev/null -w '%{http_code}' https://xrpl365.com/)
+[ "$apex" = "200" ] || { echo "deploy smoke failed: apex returned HTTP $apex" >&2; exit 1; }
 # Fetch first: `curl | grep -q` fails under pipefail when grep exits early and curl gets SIGPIPE.
 page=$(curl -s "${URL}docs/infrastructure")
 grep -qF "$commit" <<<"$page" \

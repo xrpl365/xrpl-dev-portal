@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 // Snapshot the Docs homepage and the Infrastructure section from a running local preview
-// (`realm develop`) into plain static pages, for copy review at xrpl-org.xrpl365.com.
+// (`realm develop`) into plain static pages, for copy review at xrpl365.com/nodedocs/.
 //
 //   node preview/snapshot.mjs <base-url> <out-dir>
+//
+// Realm renders every URL root-absolute (/docs, /assets/...), but the snapshot is published under
+// a sub-path, so step 4 rewrites them: in-scope pages and the assets we publish move under BASE,
+// and every link outside the captured scope is pointed at the real xrpl.org so it still resolves
+// with no JS. The rewrite happens in the DOM, not by regex over the serialized HTML.
 //
 // Realm's client runtime refuses to run anywhere but localhost, so the published pages carry
 // none of it. Each page is the server-rendered HTML with Realm's scripts removed, plus a small
@@ -23,6 +28,11 @@ import { chromium } from 'playwright';
 const [base = 'http://127.0.0.1:4050', outDir = 'preview-dist'] = process.argv.slice(2);
 const ORIGIN = new URL(base).origin;
 const LIVE = 'https://xrpl.org';
+// URL prefix the snapshot is served under. Must match the nginx location and the deploy DOCROOT
+// (/var/www/xrpl365-apps/nodedocs); the published tree itself carries no BASE in its file paths.
+const BASE = '/nodedocs';
+// The directories Realm serves static files from. Anything else root-absolute is a page link.
+const ASSET_DIR = /^\/(assets|runtime|font|fonts|img|images|static)\//;
 const SNAPSHOT_LABEL = process.env.SNAPSHOT_LABEL || '';
 
 const trimSlash = (p) => (p.length > 1 ? p.replace(/\/+$/, '') : p);
@@ -147,8 +157,11 @@ ${SIDEBAR} [data-component-name="Menu/MenuItem"]:not([data-preview-scope]) > a{c
 <script>
 (function () {
   var LIVE = ${JSON.stringify(LIVE)};
+  var BASE = ${JSON.stringify(BASE)};
   var MENU = 'header.bds-navbar, #bds-mobile-menu, ${SIDEBAR}';
   function inScope(p) {
+    // Hrefs in the page carry BASE; the scope test is written against the original paths.
+    if (BASE && p.indexOf(BASE) === 0) p = p.slice(BASE.length) || '/';
     p = p.length > 1 ? p.replace(/\\/+$/, '') : p;
     return p === '/docs' || p === '/docs/infrastructure' || p.indexOf('/docs/infrastructure/') === 0;
   }
@@ -195,11 +208,12 @@ ${SIDEBAR} [data-component-name="Menu/MenuItem"]:not([data-preview-scope]) > a{c
 `;
 const BODY_INJECT = `<div id="xrpl365-preview-banner" role="note">${BANNER_TEXT} <a href="${LIVE}/docs" target="_blank" rel="noopener">Go to xrpl.org</a></div>`;
 
-function transform({ SIDEBAR, TABS, groupChildren, tabs, HEAD_INJECT, BODY_INJECT, pooledRules }) {
+function transform({ SIDEBAR, TABS, groupChildren, tabs, HEAD_INJECT, BODY_INJECT, pooledRules, BASE, LIVE, ASSET_DIR_SRC }) {
   const inScope = (p) => {
     p = p.length > 1 ? p.replace(/\/+$/, '') : p;
     return p === '/docs' || p === '/docs/infrastructure' || p.startsWith('/docs/infrastructure/');
   };
+  const ASSET_DIR = new RegExp(ASSET_DIR_SRC);
 
   // Realm's scripts, module preloads, and third-party trackers. The site's own theme-switch.js
   // stays: it applies the saved or OS light/dark preference before first paint, as on xrpl.org.
@@ -260,6 +274,48 @@ function transform({ SIDEBAR, TABS, groupChildren, tabs, HEAD_INJECT, BODY_INJEC
     set.replaceWith(holder);
   });
 
+  // Rewrite root-absolute URLs. Runs after the sidebar and tab surgery so markup copied in from
+  // other pages is rewritten too, and before the injected head/body markup, which is already
+  // written with the URLs it wants.
+  const MENUS = `header.bds-navbar, #bds-mobile-menu, ${SIDEBAR}`;
+  const rewrite = (v) => {
+    if (!v || !v.startsWith('/') || v.startsWith('//')) return null;
+    const cut = v.search(/[?#]/);
+    const p = cut < 0 ? v : v.slice(0, cut);
+    const rest = cut < 0 ? '' : v.slice(cut);
+    if (ASSET_DIR.test(p)) return { url: BASE + p + rest, external: false };
+    if (inScope(p)) return { url: BASE + p + rest, external: false };
+    // Never captured, so it cannot be served from here: send it to the real site.
+    return { url: LIVE + p + rest, external: true };
+  };
+  document.querySelectorAll('[href], [src], [srcset]').forEach((el) => {
+    for (const attr of ['href', 'src']) {
+      const hit = rewrite(el.getAttribute(attr));
+      if (!hit) continue;
+      el.setAttribute(attr, hit.url);
+      // Off-site content links open in a new tab, as they did when the click guard handled them.
+      // Menu entries are left alone: the guard makes those inert.
+      if (hit.external && el.tagName === 'A' && !el.closest(MENUS)) {
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener');
+      }
+    }
+    const srcset = el.getAttribute('srcset');
+    if (srcset) {
+      el.setAttribute(
+        'srcset',
+        srcset
+          .split(',')
+          .map((part) => {
+            const [url, ...descriptor] = part.trim().split(/\s+/);
+            const hit = rewrite(url);
+            return [hit ? hit.url : url, ...descriptor].join(' ');
+          })
+          .join(', '),
+      );
+    }
+  });
+
   document.head.insertAdjacentHTML('afterbegin', HEAD_INJECT);
   const own = new Set(
     [...document.querySelectorAll('style[data-styled]')].flatMap((st) =>
@@ -291,6 +347,9 @@ const missingGroups = new Set();
       HEAD_INJECT,
       BODY_INJECT,
       pooledRules,
+      BASE,
+      LIVE,
+      ASSET_DIR_SRC: ASSET_DIR.source,
     });
     missing.forEach((m) => missingGroups.add(m));
     pages.set(p, html);
@@ -300,14 +359,17 @@ const missingGroups = new Set();
 await browser.close();
 
 // ---- 5. Assets: stylesheets, fonts, images -----------------------------------------------------
-const ASSET_ABS = /["'(\s=,]((?:\/(?:assets|runtime|font|fonts|img|images|static)\/)[^"'()\s<>,\\]*)/g;
+// Matches the rewritten form in the HTML (BASE + /assets/...); the BASE prefix is stripped again
+// by add(), since assets are fetched from the origin and written at their original paths.
+const ASSET_ABS = new RegExp(`["'(\\s=,]((?:${BASE})?${ASSET_DIR.source.slice(1)}[^"'()\\s<>,\\\\]*)`, 'g');
 const CSS_URL = /url\(\s*['"]?([^'")]+)['"]?\s*\)|@import\s+['"]([^'"]+)['"]/g;
+const stripBase = (p) => (p.startsWith(BASE + '/') ? p.slice(BASE.length) : p);
 const files = new Map();
 const failed = [];
 const queue = [];
 const seen = new Set();
 const add = (p) => {
-  p = p.split(/[?#]/)[0];
+  p = stripBase(p.split(/[?#]/)[0]);
   if (p && !seen.has(p) && (!/\.m?js$/.test(p) || p.includes('/theme-switch'))) {
     seen.add(p);
     queue.push(p);
@@ -322,13 +384,25 @@ while (queue.length) {
     continue;
   }
   const buf = Buffer.from(await res.arrayBuffer());
-  files.set(p, buf);
-  if (p.endsWith('.css')) {
-    for (const [, u, imp] of buf.toString('utf8').matchAll(CSS_URL)) {
-      const ref = u || imp;
-      if (ref && !/^(data:|https?:|#)/.test(ref)) add(new URL(ref, ORIGIN + p).pathname);
-    }
+  if (!p.endsWith('.css')) {
+    files.set(p, buf);
+    continue;
   }
+  const css = buf.toString('utf8');
+  for (const [, u, imp] of css.matchAll(CSS_URL)) {
+    const ref = u || imp;
+    if (ref && !/^(data:|https?:|#)/.test(ref)) add(new URL(ref, ORIGIN + p).pathname);
+  }
+  files.set(
+    p,
+    Buffer.from(
+      css.replace(CSS_URL, (m, u, imp) => {
+        const ref = u || imp;
+        return ref && ASSET_DIR.test(ref) ? m.replace(ref, BASE + ref) : m;
+      }),
+      'utf8',
+    ),
+  );
 }
 
 // ---- 6. Write the site ----------------------------------------------------------------------------
@@ -343,7 +417,6 @@ for (const [p, buf] of files) {
   await mkdir(path.dirname(dest), { recursive: true });
   await writeFile(dest, buf);
 }
-await writeFile(path.join(outDir, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
 
 const tabbed = Object.keys(tabStates).length;
 console.log(`snapshot: ${pages.size} pages (${tabbed} with tabs), ${files.size} files -> ${outDir}`);
